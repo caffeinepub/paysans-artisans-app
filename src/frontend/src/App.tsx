@@ -1886,7 +1886,7 @@ function OrderConfirmation({
   return (
     <div
       data-ocid="order_confirmation.panel"
-      className={`confirm-overlay absolute inset-0 z-50 flex flex-col overflow-hidden ${showContent ? "confirm-visible" : ""}`}
+      className={`confirm-overlay absolute inset-0 z-50 flex flex-col overflow-hidden ${showContent ? "confirm-visible" : "pointer-events-none"}`}
       style={{ background: "#F5EDD6" }}
     >
       {/* Top bar */}
