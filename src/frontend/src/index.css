@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* OKLCH tokens — raw L C H values */
+    --background: 0.95 0.015 85;
+    --foreground: 0.18 0.04 145;
+    --card: 0.97 0.012 85;
+    --card-foreground: 0.18 0.04 145;
+    --popover: 0.97 0.012 85;
+    --popover-foreground: 0.18 0.04 145;
+    --primary: 0.32 0.07 145;
+    --primary-foreground: 0.97 0.012 85;
+    --secondary: 0.91 0.02 85;
+    --secondary-foreground: 0.32 0.07 145;
+    --muted: 0.91 0.02 85;
+    --muted-foreground: 0.5 0.04 55;
+    --accent: 0.65 0.13 45;
+    --accent-foreground: 0.97 0.012 85;
+    --destructive: 0.55 0.18 25;
+    --destructive-foreground: 0.97 0.012 85;
+    --border: 0.85 0.025 55;
+    --input: 0.85 0.025 55;
+    --ring: 0.32 0.07 145;
+    --radius: 0.75rem;
+    --chart-1: 0.32 0.07 145;
+    --chart-2: 0.45 0.1 55;
+    --chart-3: 0.65 0.13 45;
+    --chart-4: 0.72 0.12 85;
+    --chart-5: 0.55 0.09 175;
+    --sidebar: 0.95 0.015 85;
+    --sidebar-foreground: 0.18 0.04 145;
+    --sidebar-primary: 0.32 0.07 145;
+    --sidebar-primary-foreground: 0.97 0.012 85;
+    --sidebar-accent: 0.91 0.02 85;
+    --sidebar-accent-foreground: 0.32 0.07 145;
+    --sidebar-border: 0.85 0.025 55;
+    --sidebar-ring: 0.32 0.07 145;
+
+    /* Custom app tokens */
+    --green: #2d4a2d;
+    --green-light: #3d6b3d;
+    --brown: #6b4423;
+    --cream: #f5edd6;
+    --cream-dark: #ede0c0;
+    --terracotta: #c4673a;
+    --ochre: #c8922a;
+    --text-dark: #1e2e1e;
+    --shadow-earthy: 0 4px 16px rgba(45, 74, 45, 0.13);
+  }
+}
+
+/* Desktop background */
+body {
+  background: #e8dfc8;
+  font-family: "DM Sans", sans-serif;
+  min-height: 100vh;
+}
+
+/* Paper grain texture overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+}
+
+/* Scrollbar hide utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Pulse animation for play button */
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(245, 237, 214, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(245, 237, 214, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 237, 214, 0);
+  }
+}
+.pulse-anim {
+  animation: pulse-ring 1.4s ease-in-out infinite;
+}
+
+/* Farmer video play button pulse */
+@keyframes farmer-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(45, 74, 45, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 18px rgba(45, 74, 45, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(45, 74, 45, 0);
+  }
+}
+.farmer-pulse-anim {
+  animation: farmer-pulse 1.5s ease-in-out infinite;
+}
+
+/* Checkmark scale-in animation */
+@keyframes check-pop {
+  0% {
+    transform: scale(0);
+  }
+  70% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.check-pop {
+  animation: check-pop 0.5s ease forwards;
+}
+
+/* Confirmation overlay slide-in */
+.confirm-overlay {
+  transform: translateY(100%);
+  transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.confirm-overlay.confirm-visible {
+  transform: translateY(0);
+}
+
+/* Impact progress bar fill */
+@keyframes bar-fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 68%;
+  }
+}
+.impact-bar-fill {
+  animation: bar-fill 1s ease-out forwards;
+}
+
+/* Tab transition */
+.tab-enter {
+  opacity: 0;
+  transform: translateY(8px);
+}
+.tab-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+/* Plant loyalty bar animations */
+@keyframes growStem {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+.plant-stem-anim {
+  transform-origin: bottom center;
+  animation: growStem 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+.plant-leaf-anim {
+  opacity: 0;
+  animation: leafAppear 0.5s ease forwards;
+}
+@keyframes leafAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.5) rotate(-10deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+@keyframes loyaltyBarFill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 64%;
+  }
+}
+.loyalty-bar-fill {
+  animation: loyaltyBarFill 1s ease-out 0.5s forwards;
+}
